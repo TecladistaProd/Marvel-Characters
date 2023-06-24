@@ -3,6 +3,7 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import {
   createBrowserRouter,
   RouterProvider,
+  
 } from "react-router-dom";
 import { AnimatePresence } from 'framer-motion';
 import tw from 'tailwind-styled-components';
@@ -11,8 +12,10 @@ import { Global } from '@/styles';
 import toastContext from '@/context/toast';
 import { IToastProps } from '@/interfaces/toast';
 import Toast from '@/components/Toast';
+import Redirect from '@/components/Redirect';
 import Search from '@/views/Search';
-import Hero from '@/views/Hero';
+import Characters from '@/views/Characters';
+import Character from '@/views/Character';
 
 const router = createBrowserRouter([
   {
@@ -20,9 +23,17 @@ const router = createBrowserRouter([
     element: <Search/>,
   },
   {
-    path: "about",
-    element: <Hero/>,
+    path: "/characters",
+    element: <Characters/>,
   },
+  {
+    path: "/characters/:id",
+    element: <Character/>,
+  },
+  {
+    path: '*',
+    element: <Redirect to='/' />
+  }
 ]);
 
 const Container = tw.div`

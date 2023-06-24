@@ -1,5 +1,5 @@
 {
-  "name": "my_marvel_hero",
+  "name": "my_marvel_character",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -16,6 +16,7 @@
     }
   },
   "dependencies": {
+    "@react-hookz/web": "^23.0.1",
     "axios": "^1.4.0",
     "framer-motion": "^10.12.17",
     "react": "^18.2.0",

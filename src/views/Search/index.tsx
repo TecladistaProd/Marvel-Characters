@@ -1,4 +1,5 @@
 import { useCallback, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Variants } from 'framer-motion';
 
 import Icon from '@/assets/icon.png';
@@ -6,7 +7,6 @@ import Icon from '@/assets/icon.png';
 import useChangeTextField from '@/hook/useChangeTextField';
 import useOnKeyUp from '@/hook/useOnkeyUp';
 import toastContext from '@/context/toast';
-import { IToastProps } from '@/interfaces/toast';
 
 import { Container, Content, ImgIcon, SearchBtn, SearchInput } from './styles';
 
@@ -26,19 +26,20 @@ const VARIANTS: Variants = {
 const Search: React.FC = () => {
   const { handleShowToast } = useContext(toastContext);
   const [searchVal, setSearchVal] = useChangeTextField('');
+  const navigate = useNavigate();
 
   const handleSearch = useCallback(() => {
-    console.log(searchVal)
     if (!searchVal)
       return handleShowToast({
         type: 'danger',
         message: 'You should type something on text field first',
         time: 5000,
       });
-  }, [searchVal, handleShowToast]);
+    navigate(`characters?q=${searchVal}`);
+  }, [searchVal, handleShowToast, navigate]);
 
   const onKeyUpInput = useOnKeyUp([{
-    keys: 'Enter',
+    keys: 'enter',
     callback: handleSearch
   }]);
 
@@ -53,7 +54,7 @@ const Search: React.FC = () => {
       <ImgIcon src={Icon} alt="Logo" />
       <Content>
         <SearchInput
-          placeholder='Search Hero'
+          placeholder='Search Marvel characters'
           value={searchVal}
           onChange={setSearchVal}
           onKeyUp={onKeyUpInput}

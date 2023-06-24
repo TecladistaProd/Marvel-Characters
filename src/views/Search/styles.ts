@@ -1,10 +1,7 @@
-import { motion } from 'framer-motion';
 import tw from 'tailwind-styled-components';
+import PageWrapper from '@/components/PageWrapper';
 
-export const Container = tw(motion.div)`
-  bg-slate-800
-  flex-1
-  container
+export const Container = tw(PageWrapper)`
   mx-auto
   flex
   flex-col

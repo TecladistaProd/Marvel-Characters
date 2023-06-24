@@ -4,7 +4,7 @@ import {
 
 import { Container } from './styles';
 
-const Hero: React.FC = () => {
+const Character: React.FC = () => {
   return (
     <Container
       initial={{ rotateY: 180 }}
@@ -12,10 +12,10 @@ const Hero: React.FC = () => {
       exit={{ rotateY: 180 }}
       transition={{ duration: 1.2 }}
     >
-      <h1>Hero</h1>
+      <h1>Character</h1>
       <Link to="/">Search</Link>
     </Container>
   );
 }
 
-export default Hero;
+export default Character;
