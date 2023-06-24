@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body,
+#root {
+  @apply w-screen;
+  @apply h-screen;
+  @apply flex;
+  @apply items-stretch;
+  @apply relative;
+}
