@@ -1,4 +1,4 @@
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 import tw from 'tailwind-styled-components';
 import { motion } from 'framer-motion';
 
@@ -9,7 +9,7 @@ interface IStyledProps {
 }
 
 const SContainer = styled(motion.div)`
-  @media (max-width: 1023.9px) {
+  @media screen and (max-width: 1023.9px) {
     width: calc(100% - 2.5rem);
   }
 `;

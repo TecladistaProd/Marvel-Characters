@@ -4,9 +4,9 @@ import { Variants } from 'framer-motion';
 
 import Icon from '@/assets/icon.png';
 
+import toastContext from '@/context/toast';
 import useChangeTextField from '@/hook/useChangeTextField';
 import useOnKeyUp from '@/hook/useOnkeyUp';
-import toastContext from '@/context/toast';
 
 import { Container, Content, ImgIcon, SearchBtn, SearchInput } from './styles';
 
@@ -33,7 +33,6 @@ const Search: React.FC = () => {
       return handleShowToast({
         type: 'danger',
         message: 'You should type something on text field first',
-        time: 5000,
       });
     navigate(`characters?q=${searchVal}`);
   }, [searchVal, handleShowToast, navigate]);
@@ -49,7 +48,7 @@ const Search: React.FC = () => {
       animate='show'
       exit='hidden'
       variants={VARIANTS}
-      transition={{ type: "spring", stiffness: 500, damping: 50, duration: 1.5 }}
+      transition={{ type: "spring", bounce: .5, duration: 1.5 }}
     >
       <ImgIcon src={Icon} alt="Logo" />
       <Content>

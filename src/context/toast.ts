@@ -1,9 +1,13 @@
-import { IToastProps } from '@/interfaces/toast';
-import { Dispatch, createContext } from 'react';
+import { IToastContext } from '@/interfaces/toast';
+import { createContext } from 'react';
 
-const toastContext = createContext({
-  handleShowToast: (() => undefined) as Dispatch<IToastProps>,
-  data: {} as IToastProps,
+const toastContext = createContext<IToastContext>({
+  handleShowToast: (() => undefined),
+  data: {
+    time: 0,
+    type: 'info',
+    message: ''
+  },
 });
 
 export default toastContext;

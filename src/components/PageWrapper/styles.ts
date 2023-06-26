@@ -1,10 +1,16 @@
 import { motion } from 'framer-motion';
 import tw from 'tailwind-styled-components';
 
-export const Container = tw(motion.div)`
+interface IStyledProps {
+  $container?: boolean;
+}
+
+export const Container = tw(motion.div)<IStyledProps>`
   bg-slate-800
   flex-1
-  container
+  ${
+    (p) => p.$container === false ? '' : 'container'
+  }
   h-screen
   overflow-auto
 `;

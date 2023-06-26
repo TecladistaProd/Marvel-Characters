@@ -1,59 +1,28 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useState, lazy, useCallback } from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import {
-  createBrowserRouter,
-  RouterProvider,
-  
+  BrowserRouter as Router,
+  Route,
+  Routes
 } from "react-router-dom";
 import { AnimatePresence } from 'framer-motion';
-import tw from 'tailwind-styled-components';
 
-import { Global } from '@/styles';
 import toastContext from '@/context/toast';
-import { IToastProps } from '@/interfaces/toast';
-import Toast from '@/components/Toast';
+import { IToastProps, THandleShowToast } from '@/interfaces/toast';
+import { Global, Container } from '@/styles';
+
 import Redirect from '@/components/Redirect';
-import Search from '@/views/Search';
-import Characters from '@/views/Characters';
-import Character from '@/views/Character';
+import SuspensePage from '@/components/SuspensePage';
+import Toast from '@/components/Toast';
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Search/>,
-  },
-  {
-    path: "/characters",
-    element: <Characters/>,
-  },
-  {
-    path: "/characters/:id",
-    element: <Character/>,
-  },
-  {
-    path: '*',
-    element: <Redirect to='/' />
-  }
-]);
-
-const Container = tw.div`
-  flex-1
-  flex
-  items-stretch
-  relative
-  overflow-hidden
-  bg-slate-200
-  text-black
-
-  dark:bg-slate-800
-  dark:text-white
-`;
+const Search = lazy(() => import('@/views/Search'));
+const Characters = lazy(() => import('@/views/Characters'));
+const Character = lazy(() => import('@/views/Character'));
 
 
 const queryClient = new QueryClient();
 
 function App() {
-  const [count, setCount] = useState(0);
   const [toastData, setToastData] = useState<IToastProps>({
     message: '',
     time: 0,
@@ -64,26 +33,56 @@ function App() {
     toastData.message,
     toastData.time
   ]);
+  
+  const handleShowToast = useCallback<THandleShowToast>(
+    (data) => {
+      setToastData({
+        time: 4000,
+        type: 'info',
+        ...data
+      });
+    }, []);
 
-  return (
-    <QueryClientProvider client={queryClient}>
-      <Global/>
-      <Container>
-          <toastContext.Provider value={{
-            data: toastData,
-            handleShowToast: setToastData
-          }}>
-          <AnimatePresence mode='wait'>
-            <RouterProvider router={router} />
-          </AnimatePresence>
-          <AnimatePresence mode='wait'>
-            {
-              isShowToast && <Toast/>
-            }
-          </AnimatePresence>
-          </toastContext.Provider>
-      </Container>
-    </QueryClientProvider>
+    return (
+      <>
+        <Global/>
+        <QueryClientProvider client={queryClient}>
+          <Container>
+            <toastContext.Provider value={{
+              data: toastData,
+              handleShowToast
+            }}>
+              <AnimatePresence mode='popLayout'>
+                <Router>
+                  <Routes>
+                    <Route
+                      path='/'
+                      element={<SuspensePage Page={Search} />}
+                    />
+                    <Route
+                      path='/characters'
+                      element={<SuspensePage Page={Characters} />}
+                    />
+                    <Route
+                      path='/characters/:id'
+                      element={<SuspensePage Page={Character} />}
+                    />
+                    <Route
+                      path='*'
+                      element={<Redirect to='/' />}
+                    />
+                  </Routes>
+                </Router>
+              </AnimatePresence>
+              <AnimatePresence mode='wait'>
+                {
+                  isShowToast && <Toast/>
+                }
+              </AnimatePresence>
+            </toastContext.Provider>
+          </Container>
+        </QueryClientProvider>
+      </>
   );
 }
 

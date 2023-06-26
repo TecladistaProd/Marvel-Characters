@@ -1,3 +1,7 @@
+export type TImageResponse = {
+  path: string;
+  extension: string;
+};
 export interface IResponseData<T = unknown> extends Record<string, unknown> {
   data: {
     count: number;
@@ -9,10 +13,20 @@ export interface IResponseData<T = unknown> extends Record<string, unknown> {
 }
 
 export type TCharactersData = IResponseData<{
-  thumbnail: {
-    path: string;
-    extension: string;
-  };
+  thumbnail: TImageResponse;
   name: string;
+  id: number;
+}>
+
+export type TCharacterData = IResponseData<{
+  thumbnail: TImageResponse;
+  name: string;
+  id: number;
+}>
+
+export type TCharacterComicsData = IResponseData<{
+  title: string;
+  description: string;
+  images: TImageResponse[]
   id: number;
 }>
