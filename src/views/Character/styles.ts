@@ -12,7 +12,7 @@ export const Container = tw(PageWrapper)`
 
 const TWFS = tw.section`
   w-screen
-  h-screen
+  // h-screen
   grid
   md:grid-cols-2
   md:grid-rows-1
@@ -21,13 +21,15 @@ const TWFS = tw.section`
 `;
 
 export const FirstSection = styled(TWFS)`
-  grid-template-areas: 'title title' 'image image';
+  grid-template-areas: "title image";
+  height: 100vh;
   @media screen and (max-width: 767.9px) {
+    height: 200vh;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(2, 1fr);
     grid-template-areas:
-      'title'
-      'image'
+      "image"
+      "title"
     ;
   }
 `;
@@ -38,15 +40,16 @@ export const TWCN = tw.h1`
   justify-center
   text-4xl
   font-semibold
-  drop-shadow-md
   md:w-full
   md:h-full
   w-screen
   h-screen
+  dark:bg-gray-900
+  bg-slate-100
 `;
 
 export const CharacterName = styled(TWCN)`
-  grid-area: 'title';
+  grid-area: title;
 `
 
 const TWCI = tw.img`
@@ -59,7 +62,7 @@ const TWCI = tw.img`
 `;
 
 export const CharacterImg = styled(TWCI)`
-  grid-area: 'image';
+  grid-area: image;
 `;
 
 export const ComicTitle = tw.h2`

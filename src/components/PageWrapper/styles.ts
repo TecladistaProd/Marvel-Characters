@@ -6,7 +6,8 @@ interface IStyledProps {
 }
 
 export const Container = tw(motion.div)<IStyledProps>`
-  bg-slate-800
+  dark:bg-slate-800
+  bg-slate-300
   flex-1
   ${
     (p) => p.$container === false ? '' : 'container'

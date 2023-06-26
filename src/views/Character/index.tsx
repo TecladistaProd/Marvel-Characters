@@ -105,7 +105,7 @@ const Character: React.FC = () => {
               <ComicSection>
                 {
                   comics.map((i) => (
-                    <ComicCard disabled={i.images.length < 1} onClick={setSelectedComicImages.bind(null, i.images)}>
+                    <ComicCard key={i.id} disabled={i.images.length < 1} onClick={setSelectedComicImages.bind(null, i.images)}>
                       <CCTitle>
                         {i.title}
                       </CCTitle>

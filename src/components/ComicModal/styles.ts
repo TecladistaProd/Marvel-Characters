@@ -34,6 +34,7 @@ const TWI = tw(motion.img)`
 
 export const Image = styled(TWI)`
   height: calc(100vh - 2rem);
+  max-width: calc(100vw - 2rem);
 `;
 
 interface IAStyledProps {
@@ -43,7 +44,6 @@ interface IAStyledProps {
 export const Arrow = tw.button<IAStyledProps>`
   absolute
   top-1/2
-  bottom-0
   -translate-y-1/2
   w-fit
   h-fit
@@ -60,4 +60,25 @@ export const Arrow = tw.button<IAStyledProps>`
   text-lg
   font-bold
   ${(props) => (props.$left ? "left-0.5" : "right-0.5")}
+`;
+
+export const Close = tw.button`
+  absolute
+  -top-2
+  -right-2
+  w-8
+  h-8
+  flex
+  items-center
+  justify-center
+  bg-indigo-200
+  text-red-800
+  shadow-inner
+  shadow-indigo-500
+  bg-opacity-90
+  backdrop:blur-md
+  rounded-full
+  cursor-pointer
+  text-lg
+  font-bold
 `;

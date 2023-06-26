@@ -4,7 +4,7 @@ import { AnimatePresence, Variants } from "framer-motion";
 
 import comicModalContext from "@/context/comicModalContext";
 
-import { Modal, Arrow, Image, ImgContainer } from './styles';
+import { Modal, Arrow, Image, ImgContainer, Close } from './styles';
 
 const IMG_VARIANTS: Variants = {
   enter: (dir) => ({
@@ -103,6 +103,9 @@ const ComicModal: React.FC = () => {
                 !LAI && images.length > 1 && images.map((i, k) => 
                   <img style={{ display: 'none' }} key={k} src={`${i.path}.${i.extension}`} />)
               }
+              <Close>
+                X
+              </Close>
               {
                 images.length > 1 && (
                   <>
