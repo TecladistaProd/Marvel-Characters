@@ -20,7 +20,7 @@ Projeto Criado usando React, Vite, TailwindCSS, styled-components, framer-motion
 
 **react-router-dom**: Foi usado como lib de router para as rotas do SPA (single page application).
 
-**@react-hookz/web**: Esta lib foi usado por conta de sua funcionalidade com o 'useDebouncedEffect' que funciona de maneira similar ao useEffect, contudo não vai disparar toda vez que que um dos hooks que está dentro do `[]` atualizar caso ocorre várias atualizações dentro de um certo período de tempo, ele só funcionará para o último disparo, tendo sido utilizado por exemplo para os campos de busca e a conexão com a fake API, para evitar de buscar a cada letra digitada, e sendo assim buscando apenas quando o usuário tiver parado de filtrar dentro da fração de tempo determinado.
+**@react-hookz/web**: Esta lib foi usado por conta de sua funcionalidade com o 'useDebouncedEffect' que funciona de maneira similar ao useEffect, contudo não vai disparar toda vez que que um dos hooks que está dentro do `[]` atualizar caso ocorre várias atualizações dentro de um certo período de tempo, ele só funcionará para o último disparo.
 
 ### Libs para padronizar commit-msg
 
